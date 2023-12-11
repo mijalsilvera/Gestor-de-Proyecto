@@ -2,16 +2,16 @@ namespace src;
 
 public class Comentario
 {
-    public string Descripcion { get; set; }
+    public string Mensaje { get; set; }
     public DateTime FechaHora { get; set; }
-    public Usuario Usuario { get; set; }
-    public Ticket Ticket { get; set; }
+    public int  IdUsuario { get; set; }
+    public int IdTicket { get; set; }
 
-    public Comentario(string descripcion, DateTime fecharHora, Usuario usuario, Ticket ticket)
+    public Comentario(string mensaje, DateTime fecharHora, int idUsuario, int idTicket)
     {
-        Descripcion = descripcion;
+        Mensaje = mensaje;
         FechaHora = fecharHora;
-        Usuario = usuario;
-        Ticket = ticket;
+        IdUsuario = idUsuario;
+        IdTicket = idTicket;
     }
 }

@@ -1,5 +1,7 @@
 
-namespace gestor.Funcionalidades.Ticket;
+using src;
+
+namespace gestor.Funcionalidades.TicketF;
 
 
 public interface ITicketService
@@ -13,13 +15,15 @@ public class TicketService : ITicketService
     {
         tickets = new List<Ticket>()
         {
-            new Ticket(new Guid(), "ticket1", 1, 06-04-2022, 07-12-2023, "hola", "mijal"),
-        }
+            new Ticket(1, "ticket1", Estado.abierto, new DateOnly(2022, 06, 06), new DateOnly(2023, 12, 17)),
+            new Ticket(2, "ticket2", Estado.abierto, new DateOnly(2022, 06, 22), new DateOnly(2023, 11, 04)),
+        };
     }
-
 
     public List<Ticket> GetTickets()
     {
-        throw new NotImplementedException();
+        return tickets;
     }
+
+
 }
