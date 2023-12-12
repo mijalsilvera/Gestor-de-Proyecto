@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+namespace gestor.Funcionalidades.Usuarios;
 
-namespace gestor.Funcionalidades.UsuarioF;
-
-public static class UsuarioEndpoint
+public static class UsuarioEndpoints
 {
     public static void MapUsuarioEndpoint(this WebApplication app)
     {
-        app.MapGet("/gestor/Ticket", ([FromServices]IUsuarioService usuarioService) =>
+        app.MapGet("/api/Usuario", ([FromServices] IUsuarioService usuarioService) =>
         {
             return Results.Ok(usuarioService.GetUsuarios());
         });

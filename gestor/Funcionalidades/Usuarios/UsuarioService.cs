@@ -1,6 +1,7 @@
+using gestor;
 using src;
 
-namespace gestor.Funcionalidades.UsuarioF;
+namespace gestor.Funcionalidades.Usuarios;
 
 
 public interface IUsuarioService

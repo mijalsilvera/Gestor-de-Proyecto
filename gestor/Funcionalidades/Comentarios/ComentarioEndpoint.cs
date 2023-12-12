@@ -1,13 +1,11 @@
-
 using Microsoft.AspNetCore.Mvc;
-
-namespace gestor.Funcionalidades.ComentarioF;
+namespace gestor.Funcionalidades.Comentarios;
 
 public static class ComentarioEndpoint
 {
     public static void MapComentarioEndpoint(this WebApplication app)
     {
-        app.MapGet("/gestor/Ticket", ([FromServices]IComentarioService comentarioService) =>
+        app.MapGet("/api/Comentario", ([FromServices] IComentarioService comentarioService) =>
         {
             return Results.Ok(comentarioService.GetComentarios());
         });

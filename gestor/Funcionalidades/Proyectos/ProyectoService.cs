@@ -1,6 +1,7 @@
+using gestor;
 using src;
 
-namespace gestor.Funcionalidades.ProyectoF;
+namespace gestor.Funcionalidades.Proyectos;
 
 
 public interface IProyectoService

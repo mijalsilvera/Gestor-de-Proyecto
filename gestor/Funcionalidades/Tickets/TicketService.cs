@@ -1,7 +1,7 @@
-
+using gestor;
 using src;
 
-namespace gestor.Funcionalidades.TicketF;
+namespace gestor.Funcionalidades.Tickets;
 
 
 public interface ITicketService

@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-
-namespace gestor.Funcionalidades.TicketF;
+namespace gestor.Funcionalidades.Tickets;
 
 public static class TicketEndpoint
 {
     public static void MapTicketEndpoint(this WebApplication app)
     {
-        app.MapGet("/gestor/Ticket", ([FromServices]ITicketService ticketService) =>
+        app.MapGet("/api/Ticket", ([FromServices] ITicketService ticketService) =>
         {
             return Results.Ok(ticketService.GetTickets());
         });

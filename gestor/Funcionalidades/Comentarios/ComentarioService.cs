@@ -1,6 +1,7 @@
+using gestor;
 using src;
 
-namespace gestor.Funcionalidades.ComentarioF;
+namespace gestor.Funcionalidades.Comentarios;
 
 public interface IComentarioService
 {
@@ -13,16 +14,18 @@ public class ComentarioService : IComentarioService
 
     public ComentarioService()
     {
-        comentarios = new List<Comentario>()
+
+    comentarios = new List<Comentario>()
         {
             new Comentario("Grandioso", DateTime.Now , 2, 1),
             new Comentario("Malisimo", DateTime.Now , 2, 2),
 
         };
     }
-
+   
     public List<Comentario> GetComentarios()
     {
         return comentarios;
     }
+    
 }

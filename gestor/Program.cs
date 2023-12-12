@@ -1,8 +1,10 @@
-using gestor.Funcionalidades.ComentarioF;
-using gestor.Funcionalidades.ProyectoF;
-using gestor.Funcionalidades.TicketF;
-using gestor.Funcionalidades.UsuarioF;
+using gestor.Funcionalidades.Comentarios;
+using gestor.Funcionalidades.Proyectos;
+using gestor.Funcionalidades.Tickets;
+using gestor.Funcionalidades.Usuarios;
+using gestor;
 using src;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<ITicketService, TicketService>();
-builder.Services.AddSingleton<IComentarioService, ComentarioService>();
-builder.Services.AddSingleton<IUsuarioService, UsuarioService>();
-builder.Services.AddSingleton<IProyectoService, ProyectoService>();
+builder.Services.AddServiceManager();
+
 
 var app = builder.Build();
 
@@ -27,13 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapTicketEndpoint();
-
 app.MapComentarioEndpoint();
 
-app.MapUsuarioEndpoint();
-
 app.MapProyectoEndpoint();
+
+app.MapTicketEndpoint();
+
+app.MapUsuarioEndpoint();
 
 app.UseHttpsRedirection();
 
