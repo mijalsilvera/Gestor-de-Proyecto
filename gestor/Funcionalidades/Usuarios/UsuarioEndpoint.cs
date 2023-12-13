@@ -1,14 +1,14 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
 namespace gestor.Funcionalidades.Usuarios;
 
-public static class UsuarioEndpoints
+public class UsuarioEndpoints : ICarterModule
 {
-    public static void MapUsuarioEndpoint(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/Usuario", ([FromServices] IUsuarioService usuarioService) =>
         {
             return Results.Ok(usuarioService.GetUsuarios());
         });
     }
-
 }

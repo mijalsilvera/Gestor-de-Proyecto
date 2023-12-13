@@ -1,9 +1,10 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
 namespace gestor.Funcionalidades.Proyectos;
 
-public static class ProyectoEndpoint
+public class ProyectoEndpoint : ICarterModule
 {
-    public static void MapProyectoEndpoint(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/Proyecto", ([FromServices] IProyectoService proyectoService) =>
         {

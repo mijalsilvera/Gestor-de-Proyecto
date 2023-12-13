@@ -1,9 +1,11 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
+
 namespace gestor.Funcionalidades.Comentarios;
 
-public static class ComentarioEndpoint
+public class ComentarioEndpoint : ICarterModule
 {
-    public static void MapComentarioEndpoint(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/Comentario", ([FromServices] IComentarioService comentarioService) =>
         {

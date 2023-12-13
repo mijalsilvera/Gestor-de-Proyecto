@@ -1,17 +1,27 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace src;
+[Table("ticket")]
 
 public class Ticket
 {
+    [Key]
+    [Required]
+
     public int IdTicket { get; set; }
-    public string Descripcion { get; set;}
+    [Required]
+    [StringLength(50)]
+    public string Descripcion { get; set; }
+    [Required]
     public Estado Estado { get; set; }
-    public DateOnly  Inicio { get; set; }
+    public DateOnly Inicio { get; set; }
     public DateOnly Fin { get; set; }
     public List<Comentario> Actividades { get; set; }
-    public List<Usuario> Usuarios { get; set; } 
+    public List<Usuario> Usuarios { get; set; }
 
-    public Ticket (int idTicket, string descripcion, Estado estado,  DateOnly inicio, DateOnly fin)
-    {   
+    public Ticket(int idTicket, string descripcion, Estado estado, DateOnly inicio, DateOnly fin)
+    {
         IdTicket = idTicket;
         Descripcion = descripcion;
         Estado = estado;
@@ -20,7 +30,7 @@ public class Ticket
         Actividades = new List<Comentario>();
         Usuarios = new List<Usuario>();
     }
-    
+
     public void Modificar(string nuevaDescripcion)
     {
         this.Descripcion = nuevaDescripcion;

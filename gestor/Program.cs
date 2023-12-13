@@ -1,10 +1,11 @@
-using gestor.Funcionalidades.Comentarios;
-using gestor.Funcionalidades.Proyectos;
-using gestor.Funcionalidades.Tickets;
-using gestor.Funcionalidades.Usuarios;
-using gestor;
-using src;
-
+// using gestor.Funcionalidades.Comentarios;
+// using gestor.Funcionalidades.Proyectos;
+// using gestor.Funcionalidades.Tickets;
+// using gestor.Funcionalidades.Usuarios;
+using gestor.Funcionalidades;
+using Carter;
+using gestor.Persistencia;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddServiceManager();
+builder.Services.AddCarter();
+
+var connectionString = builder.Configuration.GetConnectionString("aplicacion_db");
+
+builder.Services.AddDbContext<AplicacionDbContext>(opcion =>
+    opcion.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30))));
+
+builder.Services.AddDbContext<AplicacionDbContext>();
 
 
 var app = builder.Build();
@@ -27,14 +36,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapComentarioEndpoint();
-
-app.MapProyectoEndpoint();
-
-app.MapTicketEndpoint();
-
-app.MapUsuarioEndpoint();
-
+//app.MapComentarioEndpoint();
+//app.MapProyectoEndpoint();
+//app.MapTicketEndpoint();
+//app.MapUsuarioEndpoint();
+app.MapCarter();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

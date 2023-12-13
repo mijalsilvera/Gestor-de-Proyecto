@@ -1,9 +1,10 @@
+using Carter;
 using Microsoft.AspNetCore.Mvc;
 namespace gestor.Funcionalidades.Tickets;
 
-public static class TicketEndpoint
+public class TicketEndpoint : ICarterModule
 {
-    public static void MapTicketEndpoint(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapGet("/api/Ticket", ([FromServices] ITicketService ticketService) =>
         {
