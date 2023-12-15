@@ -24,13 +24,16 @@ public class Proyecto
         Nombre = nombre;
         Descripcion = descripcion;
     }
-    public void Comentar(string comentario, int idUsuario, int idTicket)
+    public void Comentar(int comentarioId, string mensaje, int idUsuario, int idTicket)
     {
-        var comentario1 = new Comentario(comentario, DateTime.Now, idUsuario, idTicket);
+        var comentario1 = new Comentario(1, mensaje, DateTime.Now, idUsuario, idTicket);
         var ticketbuscar = Tickets.FirstOrDefault(x => x.IdTicket == idTicket);
         ticketbuscar.Actividades.Add(comentario1);
     }
 
+    public Proyecto()
+    {
 
+    }
 }
 

@@ -1,4 +1,5 @@
 using gestor;
+using gestor.Persistencia;
 using src;
 
 namespace gestor.Funcionalidades.Tickets;
@@ -10,19 +11,16 @@ public interface ITicketService
 }
 public class TicketService : ITicketService
 {
-    List<Ticket> tickets;
-    public TicketService()
+    private readonly AplicacionDbContext context;
+
+    public TicketService(AplicacionDbContext context)
     {
-        tickets = new List<Ticket>()
-        {
-            new Ticket(1, "ticket1", Estado.abierto, new DateOnly(2022, 06, 06), new DateOnly(2023, 12, 17)),
-            new Ticket(2, "ticket2", Estado.abierto, new DateOnly(2022, 06, 22), new DateOnly(2023, 11, 04)),
-        };
+        this.context = context;
     }
 
     public List<Ticket> GetTickets()
     {
-        return tickets;
+        return context.Tickets.ToList();
     }
 
 

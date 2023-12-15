@@ -26,4 +26,8 @@ public class Usuario
         Tickets = new List<Ticket>();
     }
 
+    public Usuario()
+    {
+
+    }
 }

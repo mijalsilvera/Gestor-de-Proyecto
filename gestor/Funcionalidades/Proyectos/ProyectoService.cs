@@ -1,4 +1,5 @@
 using gestor;
+using gestor.Persistencia;
 using src;
 
 namespace gestor.Funcionalidades.Proyectos;
@@ -10,17 +11,15 @@ public interface IProyectoService
 }
 public class ProyectoService : IProyectoService
 {
-    List<Proyecto> proyectos;
-    public ProyectoService()
+    private readonly AplicacionDbContext context;
+
+    public ProyectoService(AplicacionDbContext context)
     {
-        proyectos = new List<Proyecto>()
-        {
-            new Proyecto(1, "nayeli", "en proceso"),
-        };
+        this.context = context;
     }
     public List<Proyecto> GetProyectos()
     {
-        return proyectos;
+        return context.Proyectos.ToList();
     }
 
 }

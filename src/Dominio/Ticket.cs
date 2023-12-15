@@ -36,6 +36,9 @@ public class Ticket
         this.Descripcion = nuevaDescripcion;
     }
 
+    public Ticket()
+    {
 
+    }
 }
 

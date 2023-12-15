@@ -6,7 +6,11 @@ namespace src;
 
 public class Comentario
 {
+    public int idTicket;
+
     [Key]
+    [Required]
+    public int comentarioId { get; set; }
     [Required]
     public string Mensaje { get; set; }
     [Required]
@@ -17,11 +21,17 @@ public class Comentario
     [StringLength(50)]
     public int IdTicket { get; set; }
 
-    public Comentario(string mensaje, DateTime fecharHora, int idUsuario, int idTicket)
+    public Comentario(int comentarioId, string mensaje, DateTime fecharHora, int idUsuario, int idTicket)
     {
+        comentarioId = comentarioId;
         Mensaje = mensaje;
         FechaHora = fecharHora;
         IdUsuario = idUsuario;
         IdTicket = idTicket;
+    }
+
+    public Comentario()
+    {
+
     }
 }

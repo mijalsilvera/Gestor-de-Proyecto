@@ -22,10 +22,17 @@ builder.Services.AddCarter();
 var connectionString = builder.Configuration.GetConnectionString("aplicacion_db");
 
 builder.Services.AddDbContext<AplicacionDbContext>(opcion =>
-    opcion.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30))));
+    opcion.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34))));
 
 builder.Services.AddDbContext<AplicacionDbContext>();
 
+var opciones = new DbContextOptionsBuilder<AplicacionDbContext>();
+
+opciones.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34)));
+
+var contexto = new AplicacionDbContext(opciones.Options);
+
+contexto.Database.EnsureCreated();
 
 var app = builder.Build();
 
@@ -40,7 +47,9 @@ if (app.Environment.IsDevelopment())
 //app.MapProyectoEndpoint();
 //app.MapTicketEndpoint();
 //app.MapUsuarioEndpoint();
+
 app.MapCarter();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

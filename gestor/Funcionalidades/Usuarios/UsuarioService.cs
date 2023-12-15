@@ -1,4 +1,5 @@
 using gestor;
+using gestor.Persistencia;
 using src;
 
 namespace gestor.Funcionalidades.Usuarios;
@@ -11,19 +12,16 @@ public interface IUsuarioService
 
 public class UsuarioService : IUsuarioService
 {
-    List<Usuario> usuarios;
+    private readonly AplicacionDbContext context;
 
-    public UsuarioService()
+    public UsuarioService(AplicacionDbContext context)
     {
-        usuarios = new List<Usuario>()
-        {
-            new Usuario(1, "mijal", "mijal@gmail.com", "245"),      
-        };
+        this.context = context;
     }
 
     public List<Usuario> GetUsuarios()
     {
-        return usuarios;
+        return context.Usuarios.ToList();
     }
 }
 
