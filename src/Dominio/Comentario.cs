@@ -10,7 +10,7 @@ public class Comentario
 
     [Key]
     [Required]
-    public int comentarioId { get; set; }
+    public int ComentarioId { get; set; }
     [Required]
     public string Mensaje { get; set; }
     [Required]
@@ -23,7 +23,7 @@ public class Comentario
 
     public Comentario(int comentarioId, string mensaje, DateTime fecharHora, int idUsuario, int idTicket)
     {
-        comentarioId = comentarioId;
+        ComentarioId = comentarioId;
         Mensaje = mensaje;
         FechaHora = fecharHora;
         IdUsuario = idUsuario;
