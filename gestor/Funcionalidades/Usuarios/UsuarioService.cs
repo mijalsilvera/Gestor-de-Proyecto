@@ -8,8 +8,9 @@ namespace gestor.Funcionalidades.Usuarios;
 public interface IUsuarioService
 {
     void CreateUsuario(UsuarioDto usuarioDto);
+    void DeleteUsuario(int IdUsuario);
     List<Usuario> GetUsuarios();
-    void UpdateProyecto(int idUsuario, UsuarioDto usuarioDto);
+    void UpdateUsuario(int idUsuario, UsuarioDto usuarioDto);
 }
 
 public class UsuarioService : IUsuarioService
@@ -27,12 +28,24 @@ public class UsuarioService : IUsuarioService
         context.SaveChanges();
     }
 
+    public void DeleteUsuario(int idUsuario)
+    {
+        var usuario = context.Usuarios.FirstOrDefault(x => x.IdUsuario == idUsuario);
+
+        if (usuario != null)
+        {
+            context.Usuarios.Remove(usuario);
+            context.SaveChanges();
+        }
+
+    }
+
     public List<Usuario> GetUsuarios()
     {
         return context.Usuarios.ToList();
     }
 
-    public void UpdateProyecto(int idUsuario, UsuarioDto usuarioDto)
+    public void UpdateUsuario(int idUsuario, UsuarioDto usuarioDto)
     {
         var usuario = context.Usuarios.FirstOrDefault(x => x.IdUsuario == idUsuario);
 

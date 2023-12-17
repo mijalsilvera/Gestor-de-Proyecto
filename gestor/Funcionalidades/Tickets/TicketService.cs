@@ -8,6 +8,7 @@ namespace gestor.Funcionalidades.Tickets;
 public interface ITicketService
 {
     void CreateTicket(TicketDto ticketDto);
+    void DeleteTicket(int idTicket);
     List<Ticket> GetTickets();
     void UpdateProyecto(int idTicket, TicketDto ticketDto);
 }
@@ -25,6 +26,16 @@ public class TicketService : ITicketService
         context.Tickets.Add(new Ticket(ticketDto.IdTicket, ticketDto.Descripcion, ticketDto.Estado, ticketDto.Inico, ticketDto.Fin));
         context.SaveChanges();
     }
+
+    public void DeleteTicket(int idTicket)
+    {
+        var ticket = context.Tickets.FirstOrDefault(x => x.IdTicket == idTicket);
+
+        if (ticket != null)
+        {
+            context.Tickets.Remove(ticket);
+            context.SaveChanges();
+        }    }
 
     public List<Ticket> GetTickets()
     {

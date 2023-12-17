@@ -8,6 +8,7 @@ namespace gestor.Funcionalidades.Proyectos;
 public interface IProyectoService
 {
     void CreateProyecto(ProyectoDto proyectoDto);
+    void DeleteProyecto(int idProyecto);
     List<Proyecto> GetProyectos();
     void UpdateProyecto(int IdProyecto, ProyectoDto proyectoDto);
 }
@@ -24,6 +25,17 @@ public class ProyectoService : IProyectoService
     {
         context.Proyectos.Add(new Proyecto(proyectoDto.IdProyecto, proyectoDto.Nombre, proyectoDto.Descripcion));
         context.SaveChanges();
+    }
+
+    public void DeleteProyecto(int idProyecto)
+    {
+        var proyecto = context.Proyectos.FirstOrDefault(x => x.IdProyecto == idProyecto);
+
+        if (proyecto != null)
+        {
+            context.Proyectos.Remove(proyecto);
+            context.SaveChanges();
+        }
     }
 
     public List<Proyecto> GetProyectos()
