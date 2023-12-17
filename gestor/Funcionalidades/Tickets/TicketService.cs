@@ -35,7 +35,8 @@ public class TicketService : ITicketService
         {
             context.Tickets.Remove(ticket);
             context.SaveChanges();
-        }    }
+        }    
+    }
 
     public List<Ticket> GetTickets()
     {
