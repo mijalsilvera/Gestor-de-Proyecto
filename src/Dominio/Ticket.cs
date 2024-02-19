@@ -18,7 +18,7 @@ public class Ticket
     public DateOnly Inicio { get; set; }
     public DateOnly Fin { get; set; }
     public List<Comentario> Actividades { get; set; }
-    public List<Usuario> Usuarios { get; set; }
+    public int IdUsuarioUsuario { get; set; }
 
     public Ticket(int idTicket, string descripcion, Estado estado, DateOnly inicio, DateOnly fin)
     {
@@ -28,7 +28,6 @@ public class Ticket
         Inicio = inicio;
         Fin = fin;
         Actividades = new List<Comentario>();
-        Usuarios = new List<Usuario>();
     }
 
     public void Modificar(string nuevaDescripcion)

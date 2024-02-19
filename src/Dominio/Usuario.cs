@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Versioning;
 
 namespace src;
 [Table("usuario")]
@@ -15,6 +16,8 @@ public class Usuario
     [Required]
     public string Email { get; set; }
     public string Contrasena { get; set; }
+    public int comentarioId { get; set; }
+    public List<Proyecto> Proyectos { get; set;}
     public List<Ticket> Tickets { get; set; }
 
     public Usuario(int idUsuario, string nombre, string email, string contrasena)
@@ -24,6 +27,7 @@ public class Usuario
         Email = email;
         Contrasena = contrasena;
         Tickets = new List<Ticket>();
+        Proyectos = new List<Proyecto>();
     }
 
     public Usuario()
