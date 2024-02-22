@@ -24,8 +24,6 @@ var connectionString = builder.Configuration.GetConnectionString("aplicacion_db"
 builder.Services.AddDbContext<AplicacionDbContext>(opcion =>
     opcion.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34))));
 
-builder.Services.AddDbContext<AplicacionDbContext>();
-
 var opciones = new DbContextOptionsBuilder<AplicacionDbContext>();
 
 opciones.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 34)));

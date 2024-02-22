@@ -7,9 +7,9 @@ namespace gestor.Funcionalidades.Comentarios;
 public interface IComentarioService
 {
     void CreateComentario(ComentarioDto comentarioDto);
-    void DeleteComentario(int comentarioId);
+    void DeleteComentario(int Idcomentario);
     List<Comentario> GetComentarios();
-    void UpdateComentario(int comentarioId, ComentarioDto comentarioDto);
+    void UpdateComentario(int Idcomentario, ComentarioDto comentarioDto);
 }
 
 public class ComentarioService : IComentarioService
@@ -23,19 +23,19 @@ public class ComentarioService : IComentarioService
 
     public void CreateComentario(ComentarioDto comentarioDto)
     {
-        context.Comentarios.Add(new Comentario(comentarioDto.ComentarioId, comentarioDto.Mensaje, comentarioDto.FechaHora, comentarioDto.IdUsuario, comentarioDto.IdTicket));
+        context.Comentarios.Add(new Comentario(comentarioDto.IdComentario, comentarioDto.Mensaje, comentarioDto.FechaHora, comentarioDto.IdUsuario, comentarioDto.IdTicket));
         context.SaveChanges();
     }
 
-    public void DeleteComentario(int comentarioId)
+    public void DeleteComentario(int IdComentario)
     {
-        var comentario = context.Comentarios.FirstOrDefault(x => x.ComentarioId == comentarioId);
-        
+        var comentario = context.Comentarios.FirstOrDefault(x => x.IdComentario == IdComentario);
+
         if (comentario != null)
         {
             context.Comentarios.Remove(comentario);
             context.SaveChanges();
-        } 
+        }
     }
 
     public List<Comentario> GetComentarios()
@@ -43,19 +43,19 @@ public class ComentarioService : IComentarioService
         return context.Comentarios.ToList();
     }
 
-    public void UpdateComentario(int comentarioId, ComentarioDto comentarioDto)
+    public void UpdateComentario(int IdComentario, ComentarioDto comentarioDto)
     {
-        var comentario = context.Comentarios.FirstOrDefault(x => x.ComentarioId == comentarioId);
+        var comentario = context.Comentarios.FirstOrDefault(x => x.IdComentario == IdComentario);
 
         if (comentario != null)
         {
-            comentario.ComentarioId = comentarioDto.ComentarioId;
+            comentario.IdComentario = comentarioDto.IdComentario;
             comentario.Mensaje = comentarioDto.Mensaje;
             comentario.FechaHora = comentarioDto.FechaHora;
-            comentario.IdUsuario = comentarioDto.IdUsuario;
+            comentario.Usuario = comentarioDto.IdUsuario;
             comentario.IdTicket = comentarioDto.IdTicket;
             context.SaveChanges();
         }
-        
+
     }
 }

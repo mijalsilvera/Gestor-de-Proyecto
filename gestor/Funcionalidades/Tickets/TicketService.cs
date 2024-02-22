@@ -23,7 +23,7 @@ public class TicketService : ITicketService
 
     public void CreateTicket(TicketDto ticketDto)
     {
-        context.Tickets.Add(new Ticket(ticketDto.IdTicket, ticketDto.Descripcion, ticketDto.Estado, ticketDto.Inico, ticketDto.Fin));
+        context.Tickets.Add(new Ticket(ticketDto.IdTicket, ticketDto.Descripcion, ticketDto.Estado, ticketDto.Inicio, ticketDto.Fin, ticketDto.Usuario));
         context.SaveChanges();
     }
 
@@ -35,7 +35,7 @@ public class TicketService : ITicketService
         {
             context.Tickets.Remove(ticket);
             context.SaveChanges();
-        }    
+        }
     }
 
     public List<Ticket> GetTickets()
@@ -52,8 +52,9 @@ public class TicketService : ITicketService
             ticket.IdTicket = ticketDto.IdTicket;
             ticket.Descripcion = ticketDto.Descripcion;
             ticket.Estado = ticketDto.Estado;
-            ticket.Inicio = ticketDto.Inico;
+            ticket.Inicio = ticketDto.Inicio;
             ticket.Fin = ticketDto.Fin;
+            ticket.Usuario = ticketDto.Usuario;
             context.SaveChanges();
         }
     }

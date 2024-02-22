@@ -6,7 +6,7 @@ namespace gestor.Funcionalidades.Comentarios;
 
 public class ComentarioEndpoint : ICarterModule
 {
-    public object ComentarioId { get; private set; }
+    public object IdComentario { get; private set; }
 
     public void AddRoutes(IEndpointRouteBuilder app)
     {
@@ -21,17 +21,17 @@ public class ComentarioEndpoint : ICarterModule
             return Results.Ok();
         });
 
-        app.MapPut("/api/song/{comentarioId}", ([FromServices] IComentarioService comentarioService, int comentarioId, ComentarioDto comentarioDto) =>
+        app.MapPut("/api/song/{comentarioId}", ([FromServices] IComentarioService comentarioService, int idComentario, ComentarioDto comentarioDto) =>
         {
 
-            comentarioService.UpdateComentario(comentarioId, comentarioDto);
+            comentarioService.UpdateComentario(idComentario, comentarioDto);
             return Results.Ok();
         });
 
-        app.MapDelete("/api/song/{comentarioId}", ([FromServices] IComentarioService comentarioService, int comentarioId) =>
+        app.MapDelete("/api/song/{comentarioId}", ([FromServices] IComentarioService comentarioService, int idComentario) =>
         {
 
-            comentarioService.DeleteComentario(comentarioId);
+            comentarioService.DeleteComentario(idComentario);
             return Results.Ok();
         });
     }

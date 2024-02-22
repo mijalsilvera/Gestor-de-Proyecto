@@ -10,7 +10,7 @@ public interface IUsuarioService
     void CreateUsuario(UsuarioDto usuarioDto);
     void DeleteUsuario(int IdUsuario);
     List<Usuario> GetUsuarios();
-    void UpdateUsuario(int idUsuario, UsuarioDto usuarioDto);
+    void UpdateUsuario(int IdUsuario, UsuarioDto usuarioDto);
 }
 
 public class UsuarioService : IUsuarioService
@@ -24,7 +24,7 @@ public class UsuarioService : IUsuarioService
 
     public void CreateUsuario(UsuarioDto usuarioDto)
     {
-        context.Usuarios.Add(new Usuario(usuarioDto.IdUsuario, usuarioDto.Nombre, usuarioDto.Email, usuarioDto.Contrasena));
+        context.Usuarios.Add(new Usuario(usuarioDto.IdUsuario, usuarioDto.Nombre, usuarioDto.Email, usuarioDto.Contrasena, usuarioDto.IdComentario));
         context.SaveChanges();
     }
 
@@ -55,6 +55,7 @@ public class UsuarioService : IUsuarioService
             usuario.Nombre = usuarioDto.Nombre;
             usuario.Email = usuarioDto.Email;
             usuario.Contrasena = usuarioDto.Contrasena;
+            usuario.IdComentario = usuarioDto.IdComentario;
             context.SaveChanges();
         }
     }

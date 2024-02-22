@@ -5,7 +5,7 @@ namespace gestor.Persistencia;
 
 public class AplicacionDbContext : DbContext
 {
-    public AplicacionDbContext(DbContextOptions options) : base(options)
+    public AplicacionDbContext(DbContextOptions<AplicacionDbContext> options) : base(options)
     {
     }
 
@@ -18,7 +18,7 @@ public class AplicacionDbContext : DbContext
     {
         modelBuilder.Entity<Comentario>().HasData(
             new Comentario(1, "hola", DateTime.Now, 1, 2),
-            new Comentario(2, "bye", DateTime.Now, 2, 3),
+            new Comentario(2, "bye", DateTime.Now, 0, 3),
             new Comentario(3, "heladommm", DateTime.Now, 3, 1)
         );
 
@@ -28,13 +28,13 @@ public class AplicacionDbContext : DbContext
         );
 
         modelBuilder.Entity<Ticket>().HasData(
-            new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09)),
-            new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10))
+            new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09), 5),
+            new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10), 6)
         );
 
         modelBuilder.Entity<Usuario>().HasData(
-            new Usuario(1, "Mijal", "mijal@gmail.com", "1245"),
-            new Usuario(2, "Lucero", "lucerosilvera@gmail.com", "458")
+            new Usuario(1, "Mijal", "mijal@gmail.com", "1245", "holaMundo"),
+            new Usuario(2, "Lucero", "lucerosilvera@gmail.com", "458", "AdiosMundo")
         );
     }
 }

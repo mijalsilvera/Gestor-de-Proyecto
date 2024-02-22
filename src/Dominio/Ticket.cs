@@ -18,15 +18,19 @@ public class Ticket
     public DateOnly Inicio { get; set; }
     public DateOnly Fin { get; set; }
     public List<Comentario> Actividades { get; set; }
-    public int IdUsuarioUsuario { get; set; }
+    public Proyecto Proyecto { get; set; }
+    public int Usuario { get; set; }
 
-    public Ticket(int idTicket, string descripcion, Estado estado, DateOnly inicio, DateOnly fin)
+
+
+    public Ticket(int idTicket, string descripcion, Estado estado, DateOnly inicio, DateOnly fin, int usuario)
     {
         IdTicket = idTicket;
         Descripcion = descripcion;
         Estado = estado;
         Inicio = inicio;
         Fin = fin;
+        Usuario = usuario;
         Actividades = new List<Comentario>();
     }
 
@@ -35,7 +39,7 @@ public class Ticket
         this.Descripcion = nuevaDescripcion;
     }
 
-    public Ticket()
+    public Ticket(int v)
     {
 
     }

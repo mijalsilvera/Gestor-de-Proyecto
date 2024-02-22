@@ -24,7 +24,7 @@ public class Proyecto
         Nombre = nombre;
         Descripcion = descripcion;
     }
-    public void Comentar(int comentarioId, string mensaje, int idUsuario, int idTicket)
+    public void Comentar(int Idcomentario, string mensaje, int idUsuario, int idTicket)
     {
         var comentario1 = new Comentario(1, mensaje, DateTime.Now, idUsuario, idTicket);
         var ticketbuscar = Tickets.FirstOrDefault(x => x.IdTicket == idTicket);
