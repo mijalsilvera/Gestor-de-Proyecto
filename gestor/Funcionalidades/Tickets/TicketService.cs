@@ -1,9 +1,7 @@
-using gestor;
 using gestor.Persistencia;
 using src;
 
 namespace gestor.Funcionalidades.Tickets;
-
 
 public interface ITicketService
 {
@@ -23,7 +21,9 @@ public class TicketService : ITicketService
 
     public void CreateTicket(TicketDto ticketDto)
     {
-        context.Tickets.Add(new Ticket(ticketDto.IdTicket, ticketDto.Descripcion, ticketDto.Estado, ticketDto.Inicio, ticketDto.Fin, ticketDto.Usuario));
+        var usuario = context.Usuarios.FirstOrDefault(x => x.IdUsuario == ticketDto.IdUsuario);
+        var proyecto = context.Proyectos.FirstOrDefault(x => x.IdProyecto == ticketDto.IdProyecto);
+        context.Tickets.Add(new Ticket(ticketDto.IdTicket, ticketDto.Descripcion, ticketDto.Estado, ticketDto.Inicio, ticketDto.Fin, usuario, proyecto));
         context.SaveChanges();
     }
 
@@ -47,6 +47,8 @@ public class TicketService : ITicketService
     {
         var ticket = context.Tickets.FirstOrDefault(x => x.IdTicket == idTicket);
 
+        var usuario = context.Usuarios.FirstOrDefault(x => x.IdUsuario == ticketDto.IdUsuario);
+
         if (ticket != null)
         {
             ticket.IdTicket = ticketDto.IdTicket;
@@ -54,7 +56,7 @@ public class TicketService : ITicketService
             ticket.Estado = ticketDto.Estado;
             ticket.Inicio = ticketDto.Inicio;
             ticket.Fin = ticketDto.Fin;
-            ticket.Usuario = ticketDto.Usuario;
+            ticket.Usuario = usuario;
             context.SaveChanges();
         }
     }

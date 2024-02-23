@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using src;
 
 namespace gestor.Funcionalidades.Tickets
@@ -13,7 +9,7 @@ namespace gestor.Funcionalidades.Tickets
         public required Estado Estado { get; set; }
         public required DateOnly Inicio { get; set; }
         public required DateOnly Fin { get; set; }
-        public required int Usuario { get; set; }
-
+        public required int IdUsuario { get; set; }
+        public required int IdProyecto { get; set; }
     }
 }

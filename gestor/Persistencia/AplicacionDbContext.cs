@@ -22,19 +22,19 @@ public class AplicacionDbContext : DbContext
             new Comentario(3, "heladommm", DateTime.Now, 3, 1)
         );
 
-        modelBuilder.Entity<Proyecto>().HasData(
-            new Proyecto(1, "nayeli", "apruebenos"),
-            new Proyecto(2, "mijal", "porfavor")
-        );
+        var proyecto1 = new Proyecto(1, "nayeli", "apruebenos");
+        var proyecto2 = new Proyecto(2, "mijal", "porfavor");
 
-        modelBuilder.Entity<Ticket>().HasData(
-            new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09), 5),
-            new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10), 6)
-        );
+        modelBuilder.Entity<Proyecto>().HasData(proyecto1, proyecto2);
 
-        modelBuilder.Entity<Usuario>().HasData(
-            new Usuario(1, "Mijal", "mijal@gmail.com", "1245", "holaMundo"),
-            new Usuario(2, "Lucero", "lucerosilvera@gmail.com", "458", "AdiosMundo")
-        );
+        var usuario1 = new Usuario(1, "Mijal", "mijal@gmail.com", "1245", "holaMundo");
+        var usuario2 = new Usuario(2, "Lucero", "lucerosilvera@gmail.com", "458", "AdiosMundo");
+
+        modelBuilder.Entity<Usuario>().HasData(usuario1, usuario2);
+
+        // modelBuilder.Entity<Ticket>().HasData(
+        //     new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09), usuario1, proyecto1),
+        //     new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10), usuario2, proyecto2)
+        // );
     }
 }

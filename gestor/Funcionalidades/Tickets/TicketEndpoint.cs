@@ -1,6 +1,5 @@
 using Carter;
 using Microsoft.AspNetCore.Mvc;
-using src;
 namespace gestor.Funcionalidades.Tickets;
 
 public class TicketEndpoint : ICarterModule
