@@ -123,7 +123,8 @@ namespace gestor.Persistencia.Migraciones
                     FechaHora = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Usuario = table.Column<int>(type: "int", nullable: false),
                     IdTicket = table.Column<int>(type: "int", maxLength: 50, nullable: false),
-                    TicketIdTicket = table.Column<int>(type: "int", nullable: true)
+                    TicketIdTicket = table.Column<int>(type: "int", nullable: true),
+                    UsuarioIdUsuario = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -133,17 +134,22 @@ namespace gestor.Persistencia.Migraciones
                         column: x => x.TicketIdTicket,
                         principalTable: "ticket",
                         principalColumn: "IdTicket");
+                    table.ForeignKey(
+                        name: "FK_comentario_usuario_UsuarioIdUsuario",
+                        column: x => x.UsuarioIdUsuario,
+                        principalTable: "usuario",
+                        principalColumn: "IdUsuario");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
                 table: "comentario",
-                columns: new[] { "IdComentario", "FechaHora", "IdTicket", "Mensaje", "TicketIdTicket", "Usuario" },
+                columns: new[] { "IdComentario", "FechaHora", "IdTicket", "Mensaje", "TicketIdTicket", "Usuario", "UsuarioIdUsuario" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5469), 2, "hola", null, 1 },
-                    { 2, new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5480), 3, "bye", null, 0 },
-                    { 3, new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5481), 1, "heladommm", null, 3 }
+                    { 1, new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2492), 2, "hola", null, 1, null },
+                    { 2, new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2507), 3, "bye", null, 0, null },
+                    { 3, new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2508), 1, "heladommm", null, 3, null }
                 });
 
             migrationBuilder.InsertData(
@@ -168,6 +174,11 @@ namespace gestor.Persistencia.Migraciones
                 name: "IX_comentario_TicketIdTicket",
                 table: "comentario",
                 column: "TicketIdTicket");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comentario_UsuarioIdUsuario",
+                table: "comentario",
+                column: "UsuarioIdUsuario");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProyectoUsuario_UsuariosIdUsuario",

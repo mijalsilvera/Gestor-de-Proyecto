@@ -11,7 +11,7 @@ using gestor.Persistencia;
 namespace gestor.Persistencia.Migraciones
 {
     [DbContext(typeof(AplicacionDbContext))]
-    [Migration("20240223031843_MigracionInicial")]
+    [Migration("20240226140316_MigracionInicial")]
     partial class MigracionInicial
     {
         /// <inheritdoc />
@@ -60,9 +60,14 @@ namespace gestor.Persistencia.Migraciones
                     b.Property<int>("Usuario")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UsuarioIdUsuario")
+                        .HasColumnType("int");
+
                     b.HasKey("IdComentario");
 
                     b.HasIndex("TicketIdTicket");
+
+                    b.HasIndex("UsuarioIdUsuario");
 
                     b.ToTable("comentario");
 
@@ -70,7 +75,7 @@ namespace gestor.Persistencia.Migraciones
                         new
                         {
                             IdComentario = 1,
-                            FechaHora = new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5469),
+                            FechaHora = new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2492),
                             IdTicket = 2,
                             Mensaje = "hola",
                             Usuario = 1
@@ -78,7 +83,7 @@ namespace gestor.Persistencia.Migraciones
                         new
                         {
                             IdComentario = 2,
-                            FechaHora = new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5480),
+                            FechaHora = new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2507),
                             IdTicket = 3,
                             Mensaje = "bye",
                             Usuario = 0
@@ -86,7 +91,7 @@ namespace gestor.Persistencia.Migraciones
                         new
                         {
                             IdComentario = 3,
-                            FechaHora = new DateTime(2024, 2, 23, 0, 18, 43, 42, DateTimeKind.Local).AddTicks(5481),
+                            FechaHora = new DateTime(2024, 2, 26, 11, 3, 15, 939, DateTimeKind.Local).AddTicks(2508),
                             IdTicket = 1,
                             Mensaje = "heladommm",
                             Usuario = 3
@@ -228,6 +233,10 @@ namespace gestor.Persistencia.Migraciones
                     b.HasOne("src.Ticket", null)
                         .WithMany("Actividades")
                         .HasForeignKey("TicketIdTicket");
+
+                    b.HasOne("src.Usuario", null)
+                        .WithMany("Comentarios")
+                        .HasForeignKey("UsuarioIdUsuario");
                 });
 
             modelBuilder.Entity("src.Ticket", b =>
@@ -261,6 +270,8 @@ namespace gestor.Persistencia.Migraciones
 
             modelBuilder.Entity("src.Usuario", b =>
                 {
+                    b.Navigation("Comentarios");
+
                     b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618

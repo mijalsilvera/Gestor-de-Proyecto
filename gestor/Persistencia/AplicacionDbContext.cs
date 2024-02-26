@@ -32,9 +32,9 @@ public class AplicacionDbContext : DbContext
 
         modelBuilder.Entity<Usuario>().HasData(usuario1, usuario2);
 
-        // modelBuilder.Entity<Ticket>().HasData(
-        //     new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09), usuario1, proyecto1),
-        //     new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10), usuario2, proyecto2)
-        // );
+        //modelBuilder.Entity<Ticket>().HasData(
+        //    new Ticket(1, "Abonado", Estado.abierto, new DateOnly(2022, 07, 08), new DateOnly(2022, 05, 09), usuario1, proyecto1),
+         //   new Ticket(2, "No abonado", Estado.fin, new DateOnly(2023, 02, 04), new DateOnly(2023, 06, 10), usuario2, proyecto2)
+        //);
     }
 }

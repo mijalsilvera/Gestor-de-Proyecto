@@ -26,6 +26,7 @@ public class Comentario
         FechaHora = fechaHora;
         Usuario = usuario;
         IdTicket = idTicket;
+        
     }
 
     public Comentario()

@@ -19,6 +19,7 @@ public class Usuario
     public string IdComentario { get; set; }
     public List<Proyecto> Proyectos { get; set; }
     public List<Ticket> Tickets { get; set; }
+    public List<Comentario> Comentarios { get; set; }
 
     public Usuario(int idUsuario, string nombre, string email, string contrasena, string idComentario)
     {
@@ -29,6 +30,7 @@ public class Usuario
         IdComentario = idComentario;
         Tickets = new List<Ticket>();
         Proyectos = new List<Proyecto>();
+        Comentarios = new List<Comentario>();
     }
 
     public Usuario()
